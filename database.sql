@@ -92,8 +92,8 @@ CREATE TABLE locations(
   id_loc INTEGER PRIMARY KEY AUTO_INCREMENT,
   latitude FLOAT NOT NULL,
   longitude FLOAT NOT NULL,
-  height FLOAT NOT NULL,
-  CHECK(height > 0),
+  asl_height FLOAT NOT NULL,
+  CHECK(asl_height >= -400 AND asl_height <= 7000),
   CHECK(latitude >= -90 AND latitude <= 90),
   CHECK(longtitude >= -180 AND longtitude <= 180)
 );
