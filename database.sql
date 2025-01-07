@@ -81,12 +81,12 @@ CREATE TABLE accomodations(
 );
 CREATE TABLE perimeters(
   id_per INTEGER PRIMARY KEY AUTO_INCREMENT,
-  width FLOAT NOT NULL,
-  CHECK (width > 0),
-  length FLOAT NOT NULL,
-  CHECK (length > 0),
-  height FLOAT NOT NULL,
-  CHECK (height > 0)
+  wid FLOAT NOT NULL,
+  CHECK (wid > 0),
+  len FLOAT NOT NULL,
+  CHECK (len > 0),
+  hei FLOAT NOT NULL,
+  CHECK (hei > 0)
 );
 CREATE TABLE locations(
   id_loc INTEGER PRIMARY KEY AUTO_INCREMENT,
