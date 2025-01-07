@@ -115,8 +115,8 @@ CREATE TABLE capacities(
   id_acc INTEGER NOT NULL,
   id_arm INTEGER NOT NULL,
   id_fuel INTEGER NOT NULL,
-  id_HF INTEGER NOT NULL,
-  id_PL INTEGER NOT NULL,
+  id_hf INTEGER NOT NULL,
+  id_pl INTEGER NOT NULL,
   id_energy INTEGER NOT NULL,
   id_archiv INTEGER NOT NULL,
   FOREIGN KEY (id_veh) REFERENCES Vehicles(id_veh),
@@ -124,8 +124,8 @@ CREATE TABLE capacities(
   FOREIGN KEY (id_acc) REFERENCES Accomodations(id_acc),
   FOREIGN KEY (id_arm) REFERENCES Armories(id_arm),
   FOREIGN KEY (id_fuel) REFERENCES Fuel(id_fuel),
-  FOREIGN KEY (id_HF) REFERENCES Health_facilities(id_HF),
-  FOREIGN KEY (id_PL) REFERENCES ParkingLots(id_PL),
+  FOREIGN KEY (id_HF) REFERENCES Health_facilities(id_hf),
+  FOREIGN KEY (id_PL) REFERENCES ParkingLots(id_pl),
   FOREIGN KEY (id_energy) REFERENCES Energy(id_energy),
   FOREIGN KEY (id_archiv) REFERENCES Archivation(id_archiv)
 );
