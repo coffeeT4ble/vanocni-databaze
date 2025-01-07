@@ -103,6 +103,8 @@ CREATE TABLE people(
   l_name NVARCHAR(50) NOT NULL,
   code_role INTEGER NOT NULL,
   access_level SMALLINT NOT NULL,
+  birth_date DATE NOT NULL,
+  CHECK (birth_date < GETDATE()),
   CHECK (access_level > 0),
   CHECK (code_role >= 100 AND code_role <= 1000)
 );
