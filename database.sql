@@ -144,7 +144,7 @@ CREATE TABLE bases(
   CHECK(foundat_date < GETDATE())
 );
 CREATE TABLE accesses(
-  id_acc INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_acce INTEGER PRIMARY KEY AUTO_INCREMENT,
   date_acce DATE NOT NULL,
   code_acce INTEGER NOT NULL,
   desc_acce NVARCHAR(200),
