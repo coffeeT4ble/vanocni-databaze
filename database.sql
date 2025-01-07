@@ -124,8 +124,8 @@ CREATE TABLE capacities(
   FOREIGN KEY (id_acc) REFERENCES Accomodations(id_acc),
   FOREIGN KEY (id_arm) REFERENCES Armories(id_arm),
   FOREIGN KEY (id_fuel) REFERENCES Fuel(id_fuel),
-  FOREIGN KEY (id_HF) REFERENCES Health_facilities(id_hf),
-  FOREIGN KEY (id_PL) REFERENCES ParkingLots(id_pl),
+  FOREIGN KEY (id_hf) REFERENCES Health_facilities(id_hf),
+  FOREIGN KEY (id_pl) REFERENCES ParkingLots(id_pl),
   FOREIGN KEY (id_energy) REFERENCES Energy(id_energy),
   FOREIGN KEY (id_archiv) REFERENCES Archivation(id_archiv)
 );
