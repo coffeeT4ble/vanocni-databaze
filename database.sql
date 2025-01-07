@@ -1,16 +1,16 @@
 CREATE DATABASE MilitaryBases;
 USE MilitaryBases;
 
-CREATE TABLE Armories{
+CREATE TABLE armories{
   id_arm INTEGER PRIMARY KEY AUTO_INCREMENT,
   code_arm INTEGER NOT NULL,
-  max_amount INTEGER NOT NULL,
-  CHECK (max_amount > 0),
-  act_amount INTEGER NOT NULL,
-  CHECK (act_amount <= max_amount AND act_amount > 0),
+  max_amnt INTEGER NOT NULL,
+  CHECK (max_amnt > 0),
+  act_amnt INTEGER NOT NULL,
+  CHECK (act_amnt <= max_amnt AND act_amnt > 0),
   desc_arm NVARCHAR(50)
 };
-CREATE TABLE Fuel(
+CREATE TABLE fuels(
   id_fuel INTEGER PRIMARY KEY AUTO_INCREMENT,
   code_fuel INTEGER NOT NULL,
   max_vol INTEGER NOT NULL,
@@ -19,49 +19,49 @@ CREATE TABLE Fuel(
   CHECK (act_vol <= max_vol AND act_vol > 0),
   desc_fuel NVARCHAR(50)
 );
-CREATE TABLE Health_facilities(
-  id_HF INTEGER PRIMARY KEY AUTO_INCREMENT,
-  code_HF INTEGER NOT NULL,
-  max_amount INTEGER NOT NULL,
-  CHECK (max_amount > 0),
-  act_amount INTEGER NOT NULL,
-  CHECK (act_amount <= max_amount AND act_amount > 0),
-  desc_HF NVARCHAR(50)
+CREATE TABLE health_facilities(
+  id_hf INTEGER PRIMARY KEY AUTO_INCREMENT,
+  code_hf INTEGER NOT NULL,
+  max_amnt INTEGER NOT NULL,
+  CHECK (max_amnt > 0),
+  act_amnt INTEGER NOT NULL,
+  CHECK (act_amnt <= max_amnt AND act_amnt > 0),
+  desc_hf NVARCHAR(50)
 );
-CREATE TABLE ParkingLots(
-  id_PL INTEGER PRIMARY KEY AUTO_INCREMENT,
-  code_PL INTEGER NOT NULL,
-  max_amount INTEGER NOT NULL,
-  CHECK (max_amount > 0),
-  act_amount INTEGER NOT NULL,
-  CHECK (act_amount <= max_amount AND act_amount > 0),
+CREATE TABLE parking_lots(
+  id_pl INTEGER PRIMARY KEY AUTO_INCREMENT,
+  code_pl INTEGER NOT NULL,
+  max_amnt INTEGER NOT NULL,
+  CHECK (max_amnt > 0),
+  act_amnt INTEGER NOT NULL,
+  CHECK (act_amnt <= max_amnt AND act_amnt > 0),
   desc_pl NVARCHAR(50)
 );
-CREATE TABLE Energy(
+CREATE TABLE energies(
   id_energy INTEGER PRIMARY KEY AUTO_INCREMENT,
   code_energy INTEGER NOT NULL,
-  max_amount FLOAT NOT NULL,
-  CHECK (max_amount > 0),
-  act_amount FLOAT NOT NULL,
-  CHECK (act_amount <= max_amount AND act_amount > 0),
+  max_amnt FLOAT NOT NULL,
+  CHECK (max_amnt > 0),
+  act_amnt FLOAT NOT NULL,
+  CHECK (act_amnt <= max_amnt AND act_amnt > 0),
   desc_energy NVARCHAR(50)
 );
-CREATE TABLE Archivation(
+CREATE TABLE archivations(
   id_archiv INTEGER PRIMARY KEY AUTO_INCREMENT,
-  change_date DATE NOT NULL,
+  chng_date DATE NOT NULL,
   state_pre NVARCHAR(100) NOT NULL,
   state_post NVARCHAR(100) NOT NULL,
   CHECK (state_pre != state_post),
-  description NVARCHAR(200)
+  desc_arch NVARCHAR(200)
 );
-CREATE TABLE Vehicles(
+CREATE TABLE vehicles(
   id_veh INTEGER PRIMARY KEY AUTO_INCREMENT,
   code_veh INTEGER NOT NULL,
-  amount_veh INTEGER NOT NULL,
-  CHECK (amount_veh > 0),
+  amount INTEGER NOT NULL,
+  CHECK (amount > 0),
   desc_veh NVARCHAR(50)
 );
-CREATE TABLE Storage(
+CREATE TABLE storages(
   id_stor INTEGER PRIMARY KEY AUTO_INCREMENT,
   code_stor INTEGER NOT NULL,
   max_cap FLOAT NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE Storage(
   CHECK (act_cap <= max_cap AND act_cap > 0),
   desc_stor NVARCHAR(50)
 );
-CREATE TABLE Accomodations(
+CREATE TABLE accomodations(
   id_acc INTEGER PRIMARY KEY AUTO_INCREMENT,
   code_acc INTEGER NOT NULL,
   max_people INTEGER NOT NULL,
@@ -79,30 +79,34 @@ CREATE TABLE Accomodations(
   CHECK (act_people <= max_people AND act_people > 0),
   desc_acc NVARCHAR(50)
 );
-CREATE TABLE Perimeters(
+CREATE TABLE perimeters(
   id_per INTEGER PRIMARY KEY AUTO_INCREMENT,
-  width_per FLOAT NOT NULL,
-  CHECK (width_per > 0),
-  length_per FLOAT NOT NULL,
-  CHECK (length_per > 0),
-  height_per FLOAT NOT NULL,
-  CHECK (height_per > 0)
+  width FLOAT NOT NULL,
+  CHECK (width > 0),
+  length FLOAT NOT NULL,
+  CHECK (length > 0),
+  height FLOAT NOT NULL,
+  CHECK (height > 0)
 );
-CREATE TABLE Locations(
+CREATE TABLE locations(
   id_loc INTEGER PRIMARY KEY AUTO_INCREMENT,
-  latitude_loc FLOAT NOT NULL,
-  longitude_loc FLOAT NOT NULL,
-  height_loc FLOAT NOT NULL
+  latitude FLOAT NOT NULL,
+  longitude FLOAT NOT NULL,
+  height FLOAT NOT NULL,
+  CHECK(height > 0),
+  CHECK(latitude >= -90 AND latitude <= 90),
+  CHECK(longtitude >= -180 AND longtitude <= 180)
 );
-CREATE TABLE People(
+CREATE TABLE people(
   id_person INTEGER PRIMARY KEY AUTO_INCREMENT,
   f_name NVARCHAR(50) NOT NULL,
-  l_surname NVARCHAR(50) NOT NULL,
+  l_name NVARCHAR(50) NOT NULL,
   code_role INTEGER NOT NULL,
   access_level SMALLINT NOT NULL,
-  CHECK (access_level > 0)
+  CHECK (access_level > 0),
+  CHECK (code_role >= 100 AND code_role <= 1000)
 );
-CREATE TABLE Capacities(
+CREATE TABLE capacities(
   id_cap INTEGER PRIMARY KEY AUTO_INCREMENT,
   id_veh INTEGER NOT NULL,
   id_stor INTEGER NOT NULL,
@@ -123,27 +127,31 @@ CREATE TABLE Capacities(
   FOREIGN KEY (id_energy) REFERENCES Energy(id_energy),
   FOREIGN KEY (id_archiv) REFERENCES Archivation(id_archiv)
 );
-CREATE TABLE Bases(
+CREATE TABLE bases(
   id_base INTEGER PRIMARY KEY AUTO_INCREMENT,
   id_loc INTEGER NOT NULL,
   id_per INTEGER NOT NULL,
-  id_ cap INTEGER NOT NULL,
+  id_cap INTEGER NOT NULL,
   id_person INTEGER NOT NULL,
   name NVARCHAR(50) NOT NULL,
+  foundat_date DATE NOT NULL,
   FOREIGN KEY (id_loc) REFERENCES Locations(id_loc),
   FOREIGN KEY (id_per) REFERENCES Perimeters(id_per),
   FOREIGN KEY (id_cap) REFERENCES Capacities(id_cap),
-  FOREIGN KEY (id_person) REFERENCES People(id_person)
+  FOREIGN KEY (id_person) REFERENCES People(id_person),
+  CHECK(foundat_date < GETDATE())
 );
-CREATE TABLE Accesses(
-  id_access INTEGER PRIMARY KEY AUTO_INCREMENT,
-  date_access DATE NOT NULL,
-  code_access INTEGER NOT NULL,
-  desc_access NVARCHAR(200),
+CREATE TABLE accesses(
+  id_acc INTEGER PRIMARY KEY AUTO_INCREMENT,
+  date_acc DATE NOT NULL,
+  code_acc INTEGER NOT NULL,
+  desc_acc NVARCHAR(200),
   id_person INTEGER NOT NULL,
   id_base INTEGER NOT NULL,
   id_cap INTEGER NOT NULL,
   FOREIGN KEY (id_person) REFERENCES People(id_person),
   FOREIGN KEY (id_base) REFERENCES Bases(id_base),
-  FOREIGN KEY (id_cap) REFERENCES Capacities(id_cap)
+  FOREIGN KEY (id_cap) REFERENCES Capacities(id_cap),
+  CHECK (date_acc <= GETDATE()),
+  CHECK(code_acc >= 100 AND code_acc <= 1000)
 );
