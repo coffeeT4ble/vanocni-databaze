@@ -145,15 +145,15 @@ CREATE TABLE bases(
 );
 CREATE TABLE accesses(
   id_acc INTEGER PRIMARY KEY AUTO_INCREMENT,
-  date_acc DATE NOT NULL,
-  code_acc INTEGER NOT NULL,
-  desc_acc NVARCHAR(200),
+  date_acce DATE NOT NULL,
+  code_acce INTEGER NOT NULL,
+  desc_acce NVARCHAR(200),
   id_person INTEGER NOT NULL,
   id_base INTEGER NOT NULL,
   id_cap INTEGER NOT NULL,
   FOREIGN KEY (id_person) REFERENCES People(id_person),
   FOREIGN KEY (id_base) REFERENCES Bases(id_base),
   FOREIGN KEY (id_cap) REFERENCES Capacities(id_cap),
-  CHECK (date_acc <= GETDATE()),
-  CHECK(code_acc >= 100 AND code_acc <= 1000)
+  CHECK (date_acce <= GETDATE()),
+  CHECK(code_acce >= 100 AND code_acc <= 1000)
 );
