@@ -185,4 +185,8 @@ Hardware: Min. 2 GHz CPU, 4 GB RAM, 500 MB volného místa na disku.
 ## **Závěr**
 
 Databáze je plně funkční a připravena k integraci. Navrhovaná struktura zajišťuje konzistenci a flexibilitu při správě dat.
-Pokud bychom pokračovali ve vývoji, tak bychom vytvořili aplikaci pro koncové uživatele.
+Pokud bychom pokračovali ve vývoji, následující kroky by mohly zahrnovat vytvoření aplikační vrstvy, která by sloužila jako rozhraní pro koncové uživatele. Tato aplikace by měla umožnit snadnou interakci s databází a poskytování přístupových práv na základě rolí a úrovní přístupů. Aplikace by mohla zahrnovat webové rozhraní pro správce, kde by bylo možné jednoduše přidávat, upravovat nebo mazat záznamy o základnách, vybavení, vozidlech a dalších objektech.
+
+Kromě toho by bylo možné zavést mechanismy pro automatické validace dat při vkládání nebo aktualizaci záznamů, což by pomohlo zajistit, že všechny údaje budou v souladu s definovanými pravidly (např. validace maximálních a aktuálních kapacit, kontrola souřadnic, nebo ověřování rolí uživatelů). Dále by byla užitečná implementace pokročilých funkcí, jako je generování zpráv, reportů a statistik, které by poskytovaly přehled o stavu vojenských základnách, jejich vybavení a kapacitách v reálném čase.
+
+Bylo by užitečné přidat i mechanismy pro integraci s dalšími systémy, například pro správu zásobování, logistiky nebo monitoring stavu vozidel a zařízení. Další možností by bylo přidání funkcí pro zajištění bezpečnosti dat, například šifrování citlivých informací a auditní záznamy pro sledování přístupů a změn v systému.
