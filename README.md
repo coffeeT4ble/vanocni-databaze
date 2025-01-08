@@ -2,19 +2,15 @@
 Autoři: Martin Šilar, Neil Malhotra
 
 ## **Úvod**
-Tato práce se zaměřuje na vytvoření relační databáze určené pro evidenci vojenských základen. Databáze umožňuje správu klíčových informací, jako jsou kapacity, vybavení, geografická poloha a další relevantní údaje. Je navržena tak, aby ji mohli využívat oprávnění pracovníci s různými přístupovými právy, přičemž se klade důraz na bezpečnost a snadnou obsluhu.
+Tato práce se zaměřuje na vytvoření relační databáze určené pro evidenci vojenských základen. Cílem databáze je efektivní správa klíčových informací, jako jsou kapacity, vybavení, geografická poloha a personální obsazení. Tento systém umožňuje oprávněným uživatelům rychlý přístup k datům a usnadňuje plánování a rozhodování.
 
-Cílem projektu je vytvořit systém, který poskytne spolehlivý nástroj pro uchovávání a správu dat o vojenských základnách. Tento systém umožní efektivní plánování a operativní řízení díky přehlednému ukládání informací a snadnému přístupu k nim. Práce zahrnuje návrh struktury databáze, implementaci datového modelu a definici jednotlivých funkcionalit dle specifikovaných požadavků.
-
-Navržený systém bude obsahovat záznamy o základnách, jako jsou jejich identifikace, geografická poloha, velikost perimetru, kapacity, typy a počty vybavení. Dále bude systém schopen odpovídat na dotazy uživatelů, jako je vyhledávání největších kapacit, nejstarších základen nebo nejvyšších poloh.
-
-Tento projekt je koncipován jako samostatná relační databáze bez implementace přidružené aplikace, což umožňuje její snadnou integraci s externími systémy nebo budoucími rozšířeními.
+Databáze byla navržena ve 3. normální formě (3NF) a je optimalizována pro použití v Microsoft SQL Server. Díky struktuře odpovídající relačnímu modelu je snadno rozšiřitelná a lze ji přizpůsobit dalším systémům.
 
 ## **E-R model**
 E-R model databáze naleznete na obrázku: 
 ![er diagram](relational.png)
 
-Schéma databáze se nachází v 3. normální formě (3NF). Všechny objekty byly pojmenovány bez háčků, čárek a v angličtině. Schéma bylo vytovořeno pro RDMBS MySQL, po menších úpravách lze využít i pro jiné databázové systémy.
+Všechny objekty byly pojmenovány bez háčků, čárek a v angličtině. Schéma bylo vytovořeno pro RDMBS MySQL, po menších úpravách lze využít i pro jiné databázové systémy.
 
 ## **Logický model**
 Logický model databáze naleznete na obrázku:
@@ -23,11 +19,7 @@ Logický model databáze naleznete na obrázku:
 ## **Entitní integrita**
 Je zajištěna pomocí uměle přidaných primárních klíčů, které jsou v každé tabulce označeny jako id_<nazev_tabulky> a obsahují automaticky generovaná celá čísla počínaje číslem 1.
 
-## **Doménová integrita**
-
-U klíčů (primárních i cizích) je nastavena jako kladné celé číslo a povinnost je dána dle nastavení referenční integrity. U neklíčových atributů je nastavena dle následujícího rozpisu:  
-
----
+## *Popis Tabulek*
 
 #### **Tabulka: armories**  
 - **code_arm** - povinné, kladné celé číslo.  
@@ -154,22 +146,39 @@ U klíčů (primárních i cizích) je nastavena jako kladné celé číslo a po
 - **id_base** - povinné, odkaz na `bases(id_base)`.  
 - **id_cap** - povinné, odkaz na `capacities(id_cap)`.  
 
+## **Doménová integrita**
+
+U každého atributu jsou nastaveny typy dat a validace pomocí omezení (CHECK), aby byla zajištěna správnost a konzistence dat.
+
 ## **Referenční integrita**
 
+Vazby mezi tabulkami jsou zajištěny cizími klíči. Například:
+Tabulka capacities propojuje informace o skladovacích prostorech, zdravotnických zařízeních a dalších kapacitách prostřednictvím cizích klíčů na příslušné tabulky.
+Tabulka bases propojuje informace o základnách, jejich kapacitách a geografické poloze.
 
-## **Indexy?**
+## **Indexy**
 
+Primární klíče jsou automaticky indexovány. Další indexy lze přidat na základě požadavků, například pro optimalizaci vyhledávání.
 
-## **Import struktury databáze**
+## **Import struktury a dat databáze**
 
+Import struktury:
+Struktura databáze je definována v SQL skriptu `create.sql` a `database.sql`.
 
-## **Import dat od zadavatele do databáze**
-
+Import dat:
+Vzorová data lze nahrát pomocí skriptu `input.sql`.
 
 ## **Požadavky na spuštění**
 
+Software: Microsoft SQL Server 2014 nebo novější.
+Hardware: Min. 2 GHz CPU, 4 GB RAM, 500 MB volného místa na disku.
 
-## **Postup instalace?**
+## **Postup instalace**
 
+1.	Vytvořte novou databázi pomocí SQL Management Studio
+2.	Naimportujte strukturu a data pomocí poskytnutých skriptů.
 
 ## **Závěr**
+
+Databáze je plně funkční a připravena k integraci. Navrhovaná struktura zajišťuje konzistenci a flexibilitu při správě dat.
+Pokud bychom pokračovali ve vývoji, tak bychom vytvořili aplikaci pro koncové uživatele.
