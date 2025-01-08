@@ -90,7 +90,7 @@ CREATE TABLE perimeters(
 CREATE TABLE locations(
   id_loc INTEGER IDENTITY(1,1) PRIMARY KEY,
   latitude FLOAT NOT NULL,
-  longitude FLOAT NOT NULL,
+  longtitude FLOAT NOT NULL,
   asl_height FLOAT NOT NULL,
   CHECK(asl_height >= -400 AND asl_height <= 7000),
   CHECK(latitude >= -90 AND latitude <= 90),
@@ -118,15 +118,15 @@ CREATE TABLE capacities(
   id_pl INTEGER NOT NULL,
   id_energy INTEGER NOT NULL,
   id_archiv INTEGER NOT NULL,
-  FOREIGN KEY (id_veh) REFERENCES Vehicles(id_veh),
-  FOREIGN KEY (id_stor) REFERENCES Storage(id_stor),
-  FOREIGN KEY (id_acc) REFERENCES Accomodations(id_acc),
-  FOREIGN KEY (id_arm) REFERENCES Armories(id_arm),
-  FOREIGN KEY (id_fuel) REFERENCES Fuel(id_fuel),
-  FOREIGN KEY (id_hf) REFERENCES Health_facilities(id_hf),
-  FOREIGN KEY (id_pl) REFERENCES ParkingLots(id_pl),
-  FOREIGN KEY (id_energy) REFERENCES Energy(id_energy),
-  FOREIGN KEY (id_archiv) REFERENCES Archivation(id_archiv)
+  FOREIGN KEY (id_veh) REFERENCES vehicles(id_veh),
+  FOREIGN KEY (id_stor) REFERENCES storages(id_stor),
+  FOREIGN KEY (id_acc) REFERENCES accomodations(id_acc),
+  FOREIGN KEY (id_arm) REFERENCES armories(id_arm),
+  FOREIGN KEY (id_fuel) REFERENCES fuels(id_fuel),
+  FOREIGN KEY (id_hf) REFERENCES health_facilities(id_hf),
+  FOREIGN KEY (id_pl) REFERENCES parking_lots(id_pl),
+  FOREIGN KEY (id_energy) REFERENCES energies(id_energy),
+  FOREIGN KEY (id_archiv) REFERENCES archivations(id_archiv)
 );
 CREATE TABLE bases(
   id_base INTEGER IDENTITY(1,1) PRIMARY KEY,
@@ -136,10 +136,10 @@ CREATE TABLE bases(
   id_person INTEGER NOT NULL,
   name NVARCHAR(50) NOT NULL,
   foundat_date DATE NOT NULL,
-  FOREIGN KEY (id_loc) REFERENCES Locations(id_loc),
-  FOREIGN KEY (id_per) REFERENCES Perimeters(id_per),
-  FOREIGN KEY (id_cap) REFERENCES Capacities(id_cap),
-  FOREIGN KEY (id_person) REFERENCES People(id_person),
+  FOREIGN KEY (id_loc) REFERENCES locations(id_loc),
+  FOREIGN KEY (id_per) REFERENCES perimeters(id_per),
+  FOREIGN KEY (id_cap) REFERENCES capacities(id_cap),
+  FOREIGN KEY (id_person) REFERENCES people(id_person),
   CHECK(foundat_date < GETDATE())
 );
 CREATE TABLE accesses(
@@ -150,9 +150,9 @@ CREATE TABLE accesses(
   id_person INTEGER NOT NULL,
   id_base INTEGER NOT NULL,
   id_cap INTEGER NOT NULL,
-  FOREIGN KEY (id_person) REFERENCES People(id_person),
-  FOREIGN KEY (id_base) REFERENCES Bases(id_base),
-  FOREIGN KEY (id_cap) REFERENCES Capacities(id_cap),
+  FOREIGN KEY (id_person) REFERENCES people(id_person),
+  FOREIGN KEY (id_base) REFERENCES bases(id_base),
+  FOREIGN KEY (id_cap) REFERENCES capacities(id_cap),
   CHECK (date_acce <= GETDATE()),
-  CHECK(code_acce >= 100 AND code_acc <= 1000)
+  CHECK(code_acce >= 100 AND code_acce <= 1000)
 );
