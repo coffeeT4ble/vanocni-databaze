@@ -1,25 +1,30 @@
-**DOKUMENTACE**
+#**DOKUMENTACE**
+Autoři: Martin Šilar, Neil Malhotra
 
-Úvod
+##**Úvod**
 
-E-R model
+##**E-R model**
+E-R model databáze naleznete na obrázku: 
 ![er diagram](relational.png)
-Logický model
+
+##**Logický model**
+Logický model databáze naleznete na obrázku:
 ![logical diagram](logical.png)
-Entitní integrita
 
-Doménová integrita
+##**Entitní integrita**
 
-Referenční integrita
+##**Doménová integrita**
 
-Indexy?
+##**Referenční integrita**
 
-Import struktury databáze
+##**Indexy?**
 
-Import dat od zadavatele do databáze
+##**Import struktury databáze**
 
-Požadavky na spuštění
+##**Import dat od zadavatele do databáze**
 
-Postup instalace?
+##**Požadavky na spuštění**
 
-Závěr
+##**Postup instalace?**
+
+##**Závěr**
