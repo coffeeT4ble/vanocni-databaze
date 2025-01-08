@@ -77,7 +77,7 @@ LIMIT 1;
 
 -- Zobrazte veškeré informace o základně, která je geograficky nejsevernější.
 
-SELECT b.name, l.latitude, l.longitude, l.asl_height, p.len
+SELECT b.name, l.latitude, l.longtitude, l.asl_height, p.len
 FROM bases b
 JOIN locations l ON b.id_loc = l.id_loc
 JOIN perimeters p ON b.id_per = p.id_per
