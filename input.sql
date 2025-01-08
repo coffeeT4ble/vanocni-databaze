@@ -1,181 +1,87 @@
 USE MilitaryBases;
 
-INSERT INTO armories (code_arm, max_amnt, act_amnt, desc_arm) VALUES
-(1, 100, 10, 'Base 1 Armory'),
-(2, 100, 11, 'Base 2 Armory'),
-(3, 100, 12, 'Base 3 Armory'),
-(4, 100, 13, 'Base 4 Armory'),
-(5, 100, 14, 'Base 5 Armory'),
-(6, 100, 15, 'Base 6 Armory'),
-(7, 100, 16, 'Base 7 Armory'),
-(8, 100, 17, 'Base 8 Armory'),
-(9, 100, 18, 'Base 9 Armory'),
-(10, 100, 19, 'Base 10 Armory');
+-- Která vojenská základna má největší celkovou kapacitu ubytování?
 
-INSERT INTO fuels (code_fuel, max_vol, act_vol, desc_fuel) VALUES
-(1, 100, 10, 'Base 1 Fuel'),
-(2, 100, 11, 'Base 2 Fuel'),
-(3, 100, 12, 'Base 3 Fuel'),
-(4, 100, 13, 'Base 4 Fuel'),
-(5, 100, 14, 'Base 5 Fuel'),
-(6, 100, 15, 'Base 6 Fuel'),
-(7, 100, 16, 'Base 7 Fuel'),
-(8, 100, 17, 'Base 8 Fuel'),
-(9, 100, 18, 'Base 9 Fuel'),
-(10, 100, 19, 'Base 10 Fuel');
+SELECT b.name
+FROM bases b
+JOIN capacities c ON b.id_cap = c.id_cap
+JOIN accomodations a ON c.id_acc = a.id_acc
+WHERE a.max_people = (
+    SELECT MAX(max_people)
+    FROM accomodations
+);
 
-INSERT INTO health_facilities (code_hf, max_amnt, act_amnt, desc_hf) VALUES
-(1, 100, 10, 'Base 1 Health Facilities'),
-(2, 100, 11, 'Base 2 Health Facilities'),
-(3, 100, 12, 'Base 3 Health Facilities'),
-(4, 100, 13, 'Base 4 Health Facilities'),
-(5, 100, 14, 'Base 5 Health Facilities'),
-(6, 100, 15, 'Base 6 Health Facilities'),
-(7, 100, 16, 'Base 7 Health Facilities'),
-(8, 100, 17, 'Base 8 Health Facilities'),
-(9, 100, 18, 'Base 9 Health Facilities'),
-(10, 100, 19, 'Base 10 Health Facilities');
+-- Které vybavení je evidováno v největším počtu na jedné základně?
 
-INSERT INTO parking_lots (code_pl, max_amnt, act_amnt, desc_pl) VALUES
-(1, 100, 10, 'Base 1 Parking Lots'),
-(2, 100, 11, 'Base 2 Parking Lots'),
-(3, 100, 12, 'Base 3 Parking Lots'),
-(4, 100, 13, 'Base 4 Parking Lots'),
-(5, 100, 14, 'Base 5 Parking Lots'),
-(6, 100, 15, 'Base 6 Parking Lots'),
-(7, 100, 16, 'Base 7 Parking Lots'),
-(8, 100, 17, 'Base 8 Parking Lots'),
-(9, 100, 18, 'Base 9 Parking Lots'),
-(10, 100, 19, 'Base 10 Parking Lots');
+SELECT TOP 1 b.name, e.desc_energy, SUM(e.max_amnt) AS total_amount
+FROM bases b
+JOIN capacities c ON b.id_cap = c.id_cap
+JOIN energies e ON c.id_energy = e.id_energy
+GROUP BY b.name, e.desc_energy
+ORDER BY total_amount DESC;
 
-INSERT INTO energies (code_energy, max_amnt, act_amnt, desc_energy) VALUES
-(1, 100, 10, 'Base 1 Energies'),
-(2, 100, 11, 'Base 2 Energies'),
-(3, 100, 12, 'Base 3 Energies'),
-(4, 100, 13, 'Base 4 Energies'),
-(5, 100, 14, 'Base 5 Energies'),
-(6, 100, 15, 'Base 6 Energies'),
-(7, 100, 16, 'Base 7 Energies'),
-(8, 100, 17, 'Base 8 Energies'),
-(9, 100, 18, 'Base 9 Energies'),
-(10, 100, 19, 'Base 10 Energies');
+-- Která základna byla založena jako první?
 
-INSERT INTO archivations (chng_date, state_pre, state_post, desc_arch) VALUES
-('2021-01-01', 'Pre', 'Post', 'Base 1 Archivation'),
-('2021-02-01', 'Pre', 'Post', 'Base 2 Archivation'),
-('2021-03-01', 'Pre', 'Post', 'Base 3 Archivation'),
-('2021-04-01', 'Pre', 'Post', 'Base 4 Archivation'),
-('2021-05-01', 'Pre', 'Post', 'Base 5 Archivation'),
-('2021-06-01', 'Pre', 'Post', 'Base 6 Archivation'),
-('2021-07-01', 'Pre', 'Post', 'Base 7 Archivation'),
-('2021-08-01', 'Pre', 'Post', 'Base 8 Archivation'),
-('2021-09-01', 'Pre', 'Post', 'Base 9 Archivation'),
-('2021-10-01', 'Pre', 'Post', 'Base 10 Archivation');
+SELECT name
+FROM bases
+WHERE foundat_date = (
+    SELECT MIN(foundat_date)
+    FROM bases
+);
 
-INSERT INTO vehicles (code_veh, amount, desc_veh) VALUES
-(1, 91, 'Base 1 Vehicles'),
-(2, 92, 'Base 2 Vehicles'),
-(3, 93, 'Base 3 Vehicles'),
-(4, 104, 'Base 4 Vehicles'),
-(5, 102, 'Base 5 Vehicles'),
-(6, 107, 'Base 6 Vehicles'),
-(7, 103, 'Base 7 Vehicles'),
-(8, 109, 'Base 8 Vehicles'),
-(9, 102, 'Base 9 Vehicles'),
-(10, 101, 'Base 10 Vehicles');
+-- Zobrazte nejvyšší nadmořskou výšku z evidovaných základen.
 
-INSERT INTO storages (code_stor, max_cap, act_cap, desc_stor) VALUES
-(1, 100, 10, 'Base 1 Storages'),
-(2, 100, 11, 'Base 2 Storages'),
-(3, 100, 12, 'Base 3 Storages'),
-(4, 100, 13, 'Base 4 Storages'),
-(5, 100, 14, 'Base 5 Storages'),
-(6, 100, 15, 'Base 6 Storages'),
-(7, 100, 16, 'Base 7 Storages'),
-(8, 100, 17, 'Base 8 Storages'),
-(9, 100, 18, 'Base 9 Storages'),
-(10, 100, 19, 'Base 10 Storages');
+SELECT MAX(asl_height) AS highest_asl
+FROM locations;
 
-INSERT INTO accomodations (code_acc, max_people, act_people, desc_acc) VALUES
-(1, 100, 10, 'Base 1 Accomodations'),
-(2, 101, 11, 'Base 2 Accomodations'),
-(3, 102, 12, 'Base 3 Accomodations'),
-(4, 103, 13, 'Base 4 Accomodations'),
-(5, 104, 14, 'Base 5 Accomodations'),
-(6, 105, 15, 'Base 6 Accomodations'),
-(7, 106, 16, 'Base 7 Accomodations'),
-(8, 107, 17, 'Base 8 Accomodations'),
-(9, 108, 18, 'Base 9 Accomodations'),
-(10, 109, 19, 'Base 10 Accomodations');
+-- Vyberte jednu základnu podle názvu a zobrazte veškeré vybavení, které na ní je.
 
-INSERT INTO perimeters (wid, len, hei) VALUES
-(10, 101, 10),
-(29, 102, 11),
-(38, 103, 12),
-(47, 104, 13),
-(56, 105, 14),
-(65, 106, 15),
-(74, 107, 16),
-(83, 108, 17),
-(92, 109, 18),
-(101, 110, 19);
+SELECT b.name, a.desc_acc, p.desc_pl, s.desc_stor, h.desc_hf, v.desc_veh, f.desc_fuel, ar.desc_arm
+FROM bases b
+JOIN capacities c ON b.id_cap = c.id_cap
+JOIN accomodations a ON c.id_acc = a.id_acc
+JOIN parking_lots p ON c.id_pl = p.id_pl
+JOIN storages s ON c.id_stor = s.id_stor
+JOIN health_facilities h ON c.id_hf = h.id_hf
+JOIN vehicles v ON c.id_veh = v.id_veh
+JOIN fuels f ON c.id_fuel = f.id_fuel
+JOIN armories ar ON c.id_arm = ar.id_arm
+WHERE b.name = 'Název základny'; -- Zde změňte na požadovaný název základny
 
-INSERT INTO locations (longtitude, latitude, asl_height) VALUES
-(100, 80, 800),
-(101, 81, 801),
-(102, 82, 802),
-(103, 83, 803),
-(104, 84, 804),
-(105, 85, 805),
-(106, 86, 806),
-(107, 87, 807),
-(108, 88, 808),
-(109, 89, 809);
+-- Které základny mají aktuálně obsazenost ubytování větší než 80 %?
 
-INSERT INTO people (f_name, l_name, code_role, access_level, birth_date) VALUES
-('John', 'Doe', 100, 1, '2000-01-01'),
-('Jane', 'Goe', 200, 2, '2000-02-01'),
-('Bob', 'Joe', 300, 3, '2000-03-01'),
-('Alice', 'Foe', 400, 4, '2000-04-01'),
-('Charlie', 'Poe', 500, 5, '2000-05-01'),
-('Eve', 'Moe', 600, 6, '2000-06-01'),
-('Frank', 'Woe', 700, 7, '2000-07-01'),
-('Grace', 'Noe', 800, 8, '2000-08-01'),
-('Hank', 'Koe', 900, 9, '2000-09-01'),
-('Ivy', 'Zoe', 1000, 10, '2000-10-01');
+SELECT b.name
+FROM bases b
+JOIN capacities c ON b.id_cap = c.id_cap
+JOIN accomodations a ON c.id_acc = a.id_acc
+WHERE (a.act_people / a.max_people) > 0.8;
 
-INSERT INTO capacities (id_veh, id_stor, id_acc, id_arm, id_fuel, id_hf, id_pl, id_energy, id_archiv) VALUES
-(1, 1, 1, 1, 1, 1, 1, 1, 1),
-(2, 2, 2, 2, 2, 2, 2, 2, 2),
-(3, 3, 3, 3, 3, 3, 3, 3, 3),
-(4, 4, 4, 4, 4, 4, 4, 4, 4),
-(5, 5, 5, 5, 5, 5, 5, 5, 5),
-(6, 6, 6, 6, 6, 6, 6, 6, 6),
-(7, 7, 7, 7, 7, 7, 7, 7, 7),
-(8, 8, 8, 8, 8, 8, 8, 8, 8),
-(9, 9, 9, 9, 9, 9, 9, 9, 9),
-(10, 10, 10, 10, 10, 10, 10, 10, 10);
+-- Na které základně je nejvíce skladovacích prostor (v m²)?
 
-INSERT INTO bases (id_loc, id_per, id_cap, id_person, name, foundat_date) VALUES
-(1, 1, 1, 1, 'Base 1', '1932-01-01'),
-(2, 2, 2, 2, 'Base 2', '1932-02-01'),
-(3, 3, 3, 3, 'Base 3', '1932-03-01'),
-(4, 4, 4, 4, 'Base 4', '1932-04-01'),
-(5, 5, 5, 5, 'Base 5', '1932-05-01'),
-(6, 6, 6, 6, 'Base 6', '1932-06-01'),
-(7, 7, 7, 7, 'Base 7', '1932-07-01'),
-(8, 8, 8, 8, 'Base 8', '1932-08-01'),
-(9, 9, 9, 9, 'Base 9', '1932-09-01'),
-(10, 10, 10, 10, 'Base 10', '1932-10-01');
+SELECT b.name
+FROM bases b
+JOIN capacities c ON b.id_cap = c.id_cap
+JOIN storages s ON c.id_stor = s.id_stor
+WHERE s.max_cap = (
+    SELECT MAX(max_cap)
+    FROM storages
+);
 
-INSERT INTO accesses (date_acce, code_acce, desc_acce, id_person, id_base, id_cap) VALUES
-('2000-01-01', 100, 'Access 1', 1, 1, 1),
-('2000-02-01', 200, 'Access 2', 2, 2, 2),
-('2000-03-01', 300, 'Access 3', 3, 3, 3),
-('2000-04-01', 400, 'Access 4', 4, 4, 4),
-('2000-05-01', 500, 'Access 5', 5, 5, 5),
-('2000-06-01', 600, 'Access 6', 6, 6, 6),
-('2000-07-01', 700, 'Access 7', 7, 7, 7),
-('2000-08-01', 800, 'Access 8', 8, 8, 8),
-('2000-09-01', 900, 'Access 9', 9, 9, 9),
-('2000-10-01', 1000, 'Access 10', 10, 10, 10);
+-- Který typ obranného systému se v databázi objevuje nejčastěji?
+
+SELECT TOP 1 ar.desc_arm, COUNT(*) AS frequency
+FROM armories ar
+JOIN capacities c ON ar.id_arm = c.id_arm
+GROUP BY ar.desc_arm
+ORDER BY frequency DESC;
+
+-- Zobrazte veškeré informace o základně, která je geograficky nejsevernější.
+
+SELECT b.name, l.latitude, l.longitude, l.asl_height, p.len
+FROM bases b
+JOIN locations l ON b.id_loc = l.id_loc
+JOIN perimeters p ON b.id_per = p.id_per
+WHERE l.latitude = (
+    SELECT MAX(latitude)
+    FROM locations
+);
