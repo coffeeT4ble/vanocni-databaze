@@ -133,16 +133,16 @@ INSERT INTO locations (longtitude, latitude, asl_height) VALUES
 (109, 89, 809);
 
 INSERT INTO people (f_name, l_name, code_role, access_level, birth_date) VALUES
-('John', 'Doe', 1, 1, '2000-01-01'),
-('Jane', 'Goe', 2, 2, '2000-02-01'),
-('Bob', 'Joe', 3, 3, '2000-03-01'),
-('Alice', 'Foe', 4, 4, '2000-04-01'),
-('Charlie', 'Poe', 5, 5, '2000-05-01'),
-('Eve', 'Moe', 6, 6, '2000-06-01'),
-('Frank', 'Woe', 7, 7, '2000-07-01'),
-('Grace', 'Noe', 8, 8, '2000-08-01'),
-('Hank', 'Koe', 9, 9, '2000-09-01'),
-('Ivy', 'Zoe', 10, 10, '2000-10-01');
+('John', 'Doe', 100, 1, '2000-01-01'),
+('Jane', 'Goe', 200, 2, '2000-02-01'),
+('Bob', 'Joe', 300, 3, '2000-03-01'),
+('Alice', 'Foe', 400, 4, '2000-04-01'),
+('Charlie', 'Poe', 500, 5, '2000-05-01'),
+('Eve', 'Moe', 600, 6, '2000-06-01'),
+('Frank', 'Woe', 700, 7, '2000-07-01'),
+('Grace', 'Noe', 800, 8, '2000-08-01'),
+('Hank', 'Koe', 900, 9, '2000-09-01'),
+('Ivy', 'Zoe', 1000, 10, '2000-10-01');
 
 INSERT INTO capacities (id_veh, id_stor, id_acc, id_arm, id_fuel, id_hf, id_pl, id_energy, id_archiv) VALUES
 (1, 1, 1, 1, 1, 1, 1, 1, 1),
@@ -169,13 +169,13 @@ INSERT INTO bases (id_loc, id_per, id_cap, id_person, name, foundat_date) VALUES
 (10, 10, 10, 10, 'Base 10', '1932-10-01');
 
 INSERT INTO accesses (date_acce, code_acce, desc_acce, id_person, id_base, id_cap) VALUES
-('2000-01-01', 1, 'Access 1', 1, 1, 1),
-('2000-02-01', 2, 'Access 2', 2, 2, 2),
-('2000-03-01', 3, 'Access 3', 3, 3, 3),
-('2000-04-01', 4, 'Access 4', 4, 4, 4),
-('2000-05-01', 5, 'Access 5', 5, 5, 5),
-('2000-06-01', 6, 'Access 6', 6, 6, 6),
-('2000-07-01', 7, 'Access 7', 7, 7, 7),
-('2000-08-01', 8, 'Access 8', 8, 8, 8),
-('2000-09-01', 9, 'Access 9', 9, 9, 9),
-('2000-10-01', 10, 'Access 10', 10, 10, 10);
+('2000-01-01', 100, 'Access 1', 1, 1, 1),
+('2000-02-01', 200, 'Access 2', 2, 2, 2),
+('2000-03-01', 300, 'Access 3', 3, 3, 3),
+('2000-04-01', 400, 'Access 4', 4, 4, 4),
+('2000-05-01', 500, 'Access 5', 5, 5, 5),
+('2000-06-01', 600, 'Access 6', 6, 6, 6),
+('2000-07-01', 700, 'Access 7', 7, 7, 7),
+('2000-08-01', 800, 'Access 8', 8, 8, 8),
+('2000-09-01', 900, 'Access 9', 9, 9, 9),
+('2000-10-01', 1000, 'Access 10', 10, 10, 10);
