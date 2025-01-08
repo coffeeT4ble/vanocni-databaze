@@ -1,8 +1,7 @@
-CREATE DATABASE MilitaryBases;
 USE MilitaryBases;
 
 CREATE TABLE armories{
-  id_arm INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_arm INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_arm INTEGER NOT NULL,
   max_amnt INTEGER NOT NULL,
   CHECK (max_amnt > 0),
@@ -11,7 +10,7 @@ CREATE TABLE armories{
   desc_arm NVARCHAR(50)
 };
 CREATE TABLE fuels(
-  id_fuel INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_fuel INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_fuel INTEGER NOT NULL,
   max_vol INTEGER NOT NULL,
   CHECK (max_vol > 0),
@@ -20,7 +19,7 @@ CREATE TABLE fuels(
   desc_fuel NVARCHAR(50)
 );
 CREATE TABLE health_facilities(
-  id_hf INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_hf INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_hf INTEGER NOT NULL,
   max_amnt INTEGER NOT NULL,
   CHECK (max_amnt > 0),
@@ -29,7 +28,7 @@ CREATE TABLE health_facilities(
   desc_hf NVARCHAR(50)
 );
 CREATE TABLE parking_lots(
-  id_pl INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_pl INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_pl INTEGER NOT NULL,
   max_amnt INTEGER NOT NULL,
   CHECK (max_amnt > 0),
@@ -38,7 +37,7 @@ CREATE TABLE parking_lots(
   desc_pl NVARCHAR(50)
 );
 CREATE TABLE energies(
-  id_energy INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_energy INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_energy INTEGER NOT NULL,
   max_amnt FLOAT NOT NULL,
   CHECK (max_amnt > 0),
@@ -47,7 +46,7 @@ CREATE TABLE energies(
   desc_energy NVARCHAR(50)
 );
 CREATE TABLE archivations(
-  id_archiv INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_archiv INTEGER IDENTITY(1,1) PRIMARY KEY,
   chng_date DATE NOT NULL,
   state_pre NVARCHAR(100) NOT NULL,
   state_post NVARCHAR(100) NOT NULL,
@@ -55,14 +54,14 @@ CREATE TABLE archivations(
   desc_arch NVARCHAR(200)
 );
 CREATE TABLE vehicles(
-  id_veh INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_veh INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_veh INTEGER NOT NULL,
   amount INTEGER NOT NULL,
   CHECK (amount > 0),
   desc_veh NVARCHAR(50)
 );
 CREATE TABLE storages(
-  id_stor INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_stor INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_stor INTEGER NOT NULL,
   max_cap FLOAT NOT NULL,
   CHECK (max_cap > 0),
@@ -71,7 +70,7 @@ CREATE TABLE storages(
   desc_stor NVARCHAR(50)
 );
 CREATE TABLE accomodations(
-  id_acc INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_acc INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_acc INTEGER NOT NULL,
   max_people INTEGER NOT NULL,
   CHECK (max_people > 0),
@@ -80,7 +79,7 @@ CREATE TABLE accomodations(
   desc_acc NVARCHAR(50)
 );
 CREATE TABLE perimeters(
-  id_per INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_per INTEGER IDENTITY(1,1) PRIMARY KEY,
   wid FLOAT NOT NULL,
   CHECK (wid > 0),
   len FLOAT NOT NULL,
@@ -89,7 +88,7 @@ CREATE TABLE perimeters(
   CHECK (hei > 0)
 );
 CREATE TABLE locations(
-  id_loc INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_loc INTEGER IDENTITY(1,1) PRIMARY KEY,
   latitude FLOAT NOT NULL,
   longitude FLOAT NOT NULL,
   asl_height FLOAT NOT NULL,
@@ -98,7 +97,7 @@ CREATE TABLE locations(
   CHECK(longtitude >= -180 AND longtitude <= 180)
 );
 CREATE TABLE people(
-  id_person INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_person INTEGER IDENTITY(1,1) PRIMARY KEY,
   f_name NVARCHAR(50) NOT NULL,
   l_name NVARCHAR(50) NOT NULL,
   code_role INTEGER NOT NULL,
@@ -109,7 +108,7 @@ CREATE TABLE people(
   CHECK (code_role >= 100 AND code_role <= 1000)
 );
 CREATE TABLE capacities(
-  id_cap INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_cap INTEGER IDENTITY(1,1) PRIMARY KEY,
   id_veh INTEGER NOT NULL,
   id_stor INTEGER NOT NULL,
   id_acc INTEGER NOT NULL,
@@ -130,7 +129,7 @@ CREATE TABLE capacities(
   FOREIGN KEY (id_archiv) REFERENCES Archivation(id_archiv)
 );
 CREATE TABLE bases(
-  id_base INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_base INTEGER IDENTITY(1,1) PRIMARY KEY,
   id_loc INTEGER NOT NULL,
   id_per INTEGER NOT NULL,
   id_cap INTEGER NOT NULL,
@@ -144,7 +143,7 @@ CREATE TABLE bases(
   CHECK(foundat_date < GETDATE())
 );
 CREATE TABLE accesses(
-  id_acce INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id_acce INTEGER IDENTITY(1,1) PRIMARY KEY,
   date_acce DATE NOT NULL,
   code_acce INTEGER NOT NULL,
   desc_acce NVARCHAR(200),
