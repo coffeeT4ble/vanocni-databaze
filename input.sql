@@ -98,15 +98,15 @@ INSERT INTO storages (code_stor, max_cap, act_cap, desc_stor) VALUES
 
 INSERT INTO accomodations (code_acc, max_people, act_people, desc_acc) VALUES
 (1, 100, 10, "Base 1 Accomodations"),
-(2, 100, 11, "Base 2 Accomodations"),
-(3, 100, 12, "Base 3 Accomodations"),
-(4, 100, 13, "Base 4 Accomodations"),
-(5, 100, 14, "Base 5 Accomodations"),
-(6, 100, 15, "Base 6 Accomodations"),
-(7, 100, 16, "Base 7 Accomodations"),
-(8, 100, 17, "Base 8 Accomodations"),
-(9, 100, 18, "Base 9 Accomodations"),
-(10, 100, 19, "Base 10 Accomodations");
+(2, 101, 11, "Base 2 Accomodations"),
+(3, 102, 12, "Base 3 Accomodations"),
+(4, 103, 13, "Base 4 Accomodations"),
+(5, 104, 14, "Base 5 Accomodations"),
+(6, 105, 15, "Base 6 Accomodations"),
+(7, 106, 16, "Base 7 Accomodations"),
+(8, 107, 17, "Base 8 Accomodations"),
+(9, 108, 18, "Base 9 Accomodations"),
+(10, 109, 19, "Base 10 Accomodations");
 
 INSERT INTO perimeters (wid, len, hei) VALUES
 (10, 101, 10),
