@@ -1,6 +1,6 @@
 USE MilitaryBases;
 
---zakladna s nejvetsi lidskou kapacitou
+--Základna s největší lidskou kapacitou
 SELECT b.name
 FROM bases b
 JOIN accommodations a ON b.id = a.base_id
@@ -9,11 +9,11 @@ WHERE a.max_people = (
     FROM accommodations
 );
 
--- nejvysi asl
+-- Nejvyšší asl
 SELECT MAX(asl_height) AS highest_asl
 FROM locations;
 
--- nejstarsi zakladna
+-- Nejstarší základna
 SELECT name
 FROM bases
 WHERE foundat_date = (
@@ -21,7 +21,7 @@ WHERE foundat_date = (
     FROM bases
 );
 
--- nejdelsi perimetr
+-- Nejdelší perimetr
 SELECT b.name
 FROM bases b
 JOIN perimeters p ON b.id_per = p.id_per
@@ -29,4 +29,3 @@ WHERE p.len = (
     SELECT MAX(len)
     FROM perimeters
 );
-
