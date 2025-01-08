@@ -8,12 +8,14 @@ Databáze byla navržena ve 3. normální formě (3NF) a je optimalizována pro 
 
 ## **E-R model**
 E-R model databáze naleznete na obrázku: 
+
 ![er diagram](relational.png)
 
 Všechny objekty byly pojmenovány bez háčků, čárek a v angličtině. Schéma bylo vytovořeno pro RDMBS MySQL, po menších úpravách lze využít i pro jiné databázové systémy.
 
 ## **Logický model**
 Logický model databáze naleznete na obrázku:
+
 ![logical diagram](logical.png)
 
 ## **Entitní integrita**
@@ -153,6 +155,7 @@ U každého atributu jsou nastaveny typy dat a validace pomocí omezení (CHECK)
 ## **Referenční integrita**
 
 Vazby mezi tabulkami jsou zajištěny cizími klíči. Například:
+
 Tabulka capacities propojuje informace o skladovacích prostorech, zdravotnických zařízeních a dalších kapacitách prostřednictvím cizích klíčů na příslušné tabulky.
 Tabulka bases propojuje informace o základnách, jejich kapacitách a geografické poloze.
 
@@ -171,6 +174,7 @@ Vzorová data lze nahrát pomocí skriptu `input.sql`.
 ## **Požadavky na spuštění**
 
 Software: Microsoft SQL Server 2014 nebo novější.
+
 Hardware: Min. 2 GHz CPU, 4 GB RAM, 500 MB volného místa na disku.
 
 ## **Postup instalace**
