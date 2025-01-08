@@ -12,13 +12,12 @@ WHERE a.max_people = (
 
 -- Které vybavení je evidováno v největším počtu na jedné základně?
 
-SELECT b.name, e.desc_energy, SUM(e.max_amnt) AS total_amount
+SELECT TOP 1 b.name, e.desc_energy, SUM(e.max_amnt) AS total_amount
 FROM bases b
 JOIN capacities c ON b.id_base = c.id_base
 JOIN energies e ON c.id_energy = e.id_energy
 GROUP BY b.name, e.desc_energy
-ORDER BY total_amount DESC
-LIMIT 1;
+ORDER BY total_amount DESC;
 
 -- Která základna byla založena jako první?
 
@@ -68,12 +67,11 @@ WHERE s.max_cap = (
 
 -- Který typ obranného systému se v databázi objevuje nejčastěji?
 
-SELECT ar.desc_arm, COUNT(*) AS frequency
+SELECT TOP 1 ar.desc_arm, COUNT(*) AS frequency
 FROM armories ar
 JOIN capacities c ON ar.id_arm = c.id_arm
 GROUP BY ar.desc_arm
-ORDER BY frequency DESC
-LIMIT 1;
+ORDER BY frequency DESC;
 
 -- Zobrazte veškeré informace o základně, která je geograficky nejsevernější.
 
