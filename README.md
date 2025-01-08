@@ -25,24 +25,134 @@ Je zajištěna pomocí uměle přidaných primárních klíčů, které jsou v k
 
 ## **Doménová integrita**
 
-V naší databázi je doménová integrita nastavena následovně:
+U klíčů (primárních i cizích) je nastavena jako kladné celé číslo a povinnost je dána dle nastavení referenční integrity. U neklíčových atributů je nastavena dle následujícího rozpisu:  
 
-#### *Primární a cizí klíče*
-Všechny primární i cizí klíče jsou definovány jako kladná celá čísla. Povinnost vyplnění těchto atributů je zajištěna pomocí referenční integrity, která garantuje konzistenci dat mezi tabulkami.
+---
 
-#### *Číselné atributy*
-Pro číselné atributy, jako jsou kapacity, objemy, množství nebo rozměry, je vždy nastavena minimální hodnota větší než nula. U atributů s maximálními a aktuálními hodnotami (např. `max_amnt` a `act_amnt`) je nastavena podmínka, že aktuální hodnota nesmí překročit maximální hodnotu.
+#### **Tabulka: armories**  
+- **code_arm** - povinné, kladné celé číslo.  
+- **max_amnt** - povinné, kladné celé číslo větší než nula.  
+- **act_amnt** - povinné, kladné celé číslo menší nebo rovné hodnotě `max_amnt`.  
+- **desc_arm** - nepovinné, maximální délka 50 znaků.  
 
-#### *Textové atributy*
-Textové atributy, jako například popisy (`desc_*`), mají omezenou maximální délku (např. 50 nebo 200 znaků) a jejich vyplnění je nepovinné.
+---
 
-#### *Datumové atributy*
-Datumové atributy (např. `birth_date`, `chng_date`, `foundat_date`, `date_acce`) jsou kontrolovány tak, aby obsahovaly platné datum. Pokud se jedná o historická data, je zajištěno, že datum nebude v budoucnosti (např. `birth_date < GETDATE()`).
+#### **Tabulka: fuels**  
+- **code_fuel** - povinné, kladné celé číslo.  
+- **max_vol** - povinné, kladné celé číslo větší než nula.  
+- **act_vol** - povinné, kladné celé číslo menší nebo rovné hodnotě `max_vol`.  
+- **desc_fuel** - nepovinné, maximální délka 50 znaků.  
 
-#### *Hodnoty související s geografií a rozměry*
-Atributy jako latitude a longitude mají nastavena omezení odpovídající jejich reálnému rozsahu (např. zeměpisná šířka mezi -90 a 90 stupni, zeměpisná délka mezi -180 a 180 stupni). Rozměry a výšky mají také minimální hodnoty větší než nula.
+---
 
-Tato nastavení doménové integrity zajišťují, že data uložená v databázi odpovídají reálným podmínkám a požadavkům na validitu, což snižuje riziko chyb a nekonzistencí.
+#### **Tabulka: health_facilities**  
+- **code_hf** - povinné, kladné celé číslo.  
+- **max_amnt** - povinné, kladné celé číslo větší než nula.  
+- **act_amnt** - povinné, kladné celé číslo menší nebo rovné hodnotě `max_amnt`.  
+- **desc_hf** - nepovinné, maximální délka 50 znaků.  
+
+---
+
+#### **Tabulka: parking_lots**  
+- **code_pl** - povinné, kladné celé číslo.  
+- **max_amnt** - povinné, kladné celé číslo větší než nula.  
+- **act_amnt** - povinné, kladné celé číslo menší nebo rovné hodnotě `max_amnt`.  
+- **desc_pl** - nepovinné, maximální délka 50 znaků.  
+
+---
+
+#### **Tabulka: energies**  
+- **code_energy** - povinné, kladné celé číslo.  
+- **max_amnt** - povinné, kladné desetinné číslo větší než nula.  
+- **act_amnt** - povinné, kladné desetinné číslo menší nebo rovné hodnotě `max_amnt`.  
+- **desc_energy** - nepovinné, maximální délka 50 znaků.  
+
+---
+
+#### **Tabulka: archivations**  
+- **chng_date** - povinné, hodnota odpovídá validnímu datu.  
+- **state_pre** - povinné, maximální délka 100 znaků.  
+- **state_post** - povinné, maximální délka 100 znaků, musí se lišit od `state_pre`.  
+- **desc_arch** - nepovinné, maximální délka 200 znaků.  
+
+---
+
+#### **Tabulka: vehicles**  
+- **code_veh** - povinné, kladné celé číslo.  
+- **amount** - povinné, kladné celé číslo větší než nula.  
+- **desc_veh** - nepovinné, maximální délka 50 znaků.  
+
+---
+
+#### **Tabulka: storages**  
+- **code_stor** - povinné, kladné celé číslo.  
+- **max_cap** - povinné, kladné desetinné číslo větší než nula.  
+- **act_cap** - povinné, kladné desetinné číslo menší nebo rovné hodnotě `max_cap`.  
+- **desc_stor** - nepovinné, maximální délka 50 znaků.  
+
+---
+
+#### **Tabulka: accomodations**  
+- **code_acc** - povinné, kladné celé číslo.  
+- **max_people** - povinné, kladné celé číslo větší než nula.  
+- **act_people** - povinné, kladné celé číslo menší nebo rovné hodnotě `max_people`.  
+- **desc_acc** - nepovinné, maximální délka 50 znaků.  
+
+---
+
+#### **Tabulka: perimeters**  
+- **wid** - povinné, kladné desetinné číslo větší než nula.  
+- **len** - povinné, kladné desetinné číslo větší než nula.  
+- **hei** - povinné, kladné desetinné číslo větší než nula.  
+
+---
+
+#### **Tabulka: locations**  
+- **latitude** - povinné, hodnota mezi -90 a 90.  
+- **longitude** - povinné, hodnota mezi -180 a 180.  
+- **asl_height** - povinné, hodnota mezi -400 a 7000.  
+
+---
+
+#### **Tabulka: people**  
+- **f_name** - povinné, maximální délka 50 znaků.  
+- **l_name** - povinné, maximální délka 50 znaků.  
+- **code_role** - povinné, hodnota mezi 100 a 1000.  
+- **access_level** - povinné, kladné celé číslo větší než nula.  
+- **birth_date** - povinné, hodnota menší než aktuální datum.  
+
+---
+
+#### **Tabulka: capacities**  
+- **id_veh** - povinné, odkaz na `vehicles(id_veh)`.  
+- **id_stor** - povinné, odkaz na `storages(id_stor)`.  
+- **id_acc** - povinné, odkaz na `accomodations(id_acc)`.  
+- **id_arm** - povinné, odkaz na `armories(id_arm)`.  
+- **id_fuel** - povinné, odkaz na `fuels(id_fuel)`.  
+- **id_hf** - povinné, odkaz na `health_facilities(id_hf)`.  
+- **id_pl** - povinné, odkaz na `parking_lots(id_pl)`.  
+- **id_energy** - povinné, odkaz na `energies(id_energy)`.  
+- **id_archiv** - povinné, odkaz na `archivations(id_archiv)`.  
+
+---
+
+#### **Tabulka: bases**  
+- **id_loc** - povinné, odkaz na `locations(id_loc)`.  
+- **id_per** - povinné, odkaz na `perimeters(id_per)`.  
+- **id_cap** - povinné, odkaz na `capacities(id_cap)`.  
+- **id_person** - povinné, odkaz na `people(id_person)`.  
+- **name** - povinné, maximální délka 50 znaků.  
+- **foundat_date** - povinné, hodnota menší než aktuální datum.  
+
+---
+
+#### **Tabulka: accesses**  
+- **date_acce** - povinné, hodnota menší nebo rovna aktuálnímu datu.  
+- **code_acce** - povinné, hodnota mezi 100 a 1000.  
+- **desc_acce** - nepovinné, maximální délka 200 znaků.  
+- **id_person** - povinné, odkaz na `people(id_person)`.  
+- **id_base** - povinné, odkaz na `bases(id_base)`.  
+- **id_cap** - povinné, odkaz na `capacities(id_cap)`.  
 
 ## **Referenční integrita**
 
