@@ -12,7 +12,7 @@ INSERT INTO armories (code_arm, max_amnt, act_amnt, desc_arm) VALUES
 (9, 100, 18, 'Base 9 Armory'),
 (10, 100, 19, 'Base 10 Armory');
 
-INSERT INTO fuel (code_fuel, max_vol, act_vol, desc_fuel) VALUES
+INSERT INTO fuels (code_fuel, max_vol, act_vol, desc_fuel) VALUES
 (1, 100, 10, 'Base 1 Fuel'),
 (2, 100, 11, 'Base 2 Fuel'),
 (3, 100, 12, 'Base 3 Fuel'),
