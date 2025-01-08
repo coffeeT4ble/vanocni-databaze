@@ -1,6 +1,6 @@
 USE MilitaryBases;
 
-CREATE TABLE armories{
+CREATE TABLE armories(
   id_arm INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_arm INTEGER NOT NULL,
   max_amnt INTEGER NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE armories{
   act_amnt INTEGER NOT NULL,
   CHECK (act_amnt <= max_amnt AND act_amnt > 0),
   desc_arm NVARCHAR(50)
-};
+);
 CREATE TABLE fuels(
   id_fuel INTEGER IDENTITY(1,1) PRIMARY KEY,
   code_fuel INTEGER NOT NULL,
