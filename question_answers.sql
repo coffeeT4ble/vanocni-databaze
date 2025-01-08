@@ -4,17 +4,18 @@ USE MilitaryBases;
 
 SELECT b.name
 FROM bases b
-JOIN accommodations a ON b.id = a.base_id
+JOIN capacities c ON b.id_cap = c.id_cap
+JOIN accomodations a ON c.id_acc = a.id_acc
 WHERE a.max_people = (
     SELECT MAX(max_people)
-    FROM accommodations
+    FROM accomodations
 );
 
 -- Které vybavení je evidováno v největším počtu na jedné základně?
 
 SELECT TOP 1 b.name, e.desc_energy, SUM(e.max_amnt) AS total_amount
 FROM bases b
-JOIN capacities c ON b.id_base = c.id_base
+JOIN capacities c ON b.id_cap = c.id_cap
 JOIN energies e ON c.id_energy = e.id_energy
 GROUP BY b.name, e.desc_energy
 ORDER BY total_amount DESC;
@@ -37,7 +38,7 @@ FROM locations;
 
 SELECT b.name, a.desc_acc, p.desc_pl, s.desc_stor, h.desc_hf, v.desc_veh, f.desc_fuel, ar.desc_arm
 FROM bases b
-JOIN capacities c ON b.id_base = c.id_base
+JOIN capacities c ON b.id_cap = c.id_cap
 JOIN accomodations a ON c.id_acc = a.id_acc
 JOIN parking_lots p ON c.id_pl = p.id_pl
 JOIN storages s ON c.id_stor = s.id_stor
@@ -51,14 +52,15 @@ WHERE b.name = 'Název základny'; -- Zde změňte na požadovaný název zákla
 
 SELECT b.name
 FROM bases b
-JOIN accomodations a ON b.id_base = a.id_base
+JOIN capacities c ON b.id_cap = c.id_cap
+JOIN accomodations a ON c.id_acc = a.id_acc
 WHERE (a.act_people / a.max_people) > 0.8;
 
 -- Na které základně je nejvíce skladovacích prostor (v m²)?
 
 SELECT b.name
 FROM bases b
-JOIN capacities c ON b.id_base = c.id_base
+JOIN capacities c ON b.id_cap = c.id_cap
 JOIN storages s ON c.id_stor = s.id_stor
 WHERE s.max_cap = (
     SELECT MAX(max_cap)
