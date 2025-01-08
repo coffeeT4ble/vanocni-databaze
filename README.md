@@ -27,10 +27,10 @@ Je zajištěna pomocí uměle přidaných primárních klíčů, které jsou v k
 
 V naší databázi je doménová integrita nastavena následovně:
 
-#### Primární a cizí klíče
+#### *Primární a cizí klíče*
 Všechny primární i cizí klíče jsou definovány jako kladná celá čísla. Povinnost vyplnění těchto atributů je zajištěna pomocí referenční integrity, která garantuje konzistenci dat mezi tabulkami.
 
-##### *Číselné atributy*
+#### *Číselné atributy*
 Pro číselné atributy, jako jsou kapacity, objemy, množství nebo rozměry, je vždy nastavena minimální hodnota větší než nula. U atributů s maximálními a aktuálními hodnotami (např. `max_amnt` a `act_amnt`) je nastavena podmínka, že aktuální hodnota nesmí překročit maximální hodnotu.
 
 #### *Textové atributy*
