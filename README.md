@@ -5,7 +5,7 @@ Autoři: Martin Šilar, Neil Malhotra
 
 ##**E-R model**
 E-R model databáze naleznete na obrázku: 
-
+![er diagram](relational.png)
 
 ##**Logický model**
 Logický model databáze naleznete na obrázku:
