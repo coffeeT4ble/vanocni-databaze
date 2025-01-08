@@ -9,14 +9,14 @@ Databáze byla navržena ve 3. normální formě (3NF) a je optimalizována pro 
 ## **E-R model**
 E-R model databáze naleznete na obrázku: 
 
-![er diagram](relational.png)
+![er diagram](relationalScheme.png)
 
 Všechny objekty byly pojmenovány bez háčků, čárek a v angličtině. Schéma bylo vytovořeno pro RDMBS MySQL, po menších úpravách lze využít i pro jiné databázové systémy.
 
 ## **Logický model**
 Logický model databáze naleznete na obrázku:
 
-![logical diagram](logical.png)
+![logical diagram](logicalScheme.png)
 
 ## **Entitní integrita**
 Je zajištěna pomocí uměle přidaných primárních klíčů, které jsou v každé tabulce označeny jako id_<nazev_tabulky> a obsahují automaticky generovaná celá čísla počínaje číslem 1.
