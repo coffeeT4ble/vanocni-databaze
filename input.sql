@@ -60,7 +60,7 @@ INSERT INTO energies (code_energy, max_amnt, act_amnt, desc_energy) VALUES
 (9, 100, 18, 'Base 9 Energies'),
 (10, 100, 19, 'Base 10 Energies');
 
-INSERT INTO archivation (chng_date, state_pre, state_post, desc_arch) VALUES
+INSERT INTO archivations (chng_date, state_pre, state_post, desc_arch) VALUES
 ('2021-01-01', 'Pre', 'Post', 'Base 1 Archivation'),
 ('2021-02-01', 'Pre', 'Post', 'Base 2 Archivation'),
 ('2021-03-01', 'Pre', 'Post', 'Base 3 Archivation'),
