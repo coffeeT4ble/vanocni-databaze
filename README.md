@@ -1,7 +1,7 @@
-#**DOKUMENTACE**
+#DOKUMENTACE
 Autoři: Martin Šilar, Neil Malhotra
 
-##**Úvod**
+## **Úvod**
 
 ##**E-R model**
 E-R model databáze naleznete na obrázku: 
