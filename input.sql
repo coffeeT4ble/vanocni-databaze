@@ -120,7 +120,7 @@ INSERT INTO perimeters (wid, len, hei) VALUES
 (92, 109, 18),
 (101, 110, 19);
 
-INSERT INTO locations (longitude, latitude, asl_height) VALUES
+INSERT INTO locations (longtitude, latitude, asl_height) VALUES
 (100, 80, 800),
 (101, 81, 801),
 (102, 82, 802),
